@@ -1,16 +1,15 @@
 import getpass
 
-
 def jogar():
     ## Jogo de Forca
 
     print("------------------------------------------")
     print("              Jogo da Forca               ")
     print("------------------------------------------")
+    print(" ")
+    palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
 
-    ##palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
-
-    palavra_secreta_str = input("Digite sua palavra secreta: ")
+    ##palavra_secreta_str = input("Digite sua palavra secreta: ")
 
     palavra_secreta = list(palavra_secreta_str)
     letras_acertadas = []
@@ -27,7 +26,7 @@ def jogar():
     print(" ")
     for letra in letras_acertadas:
         print(letra, end=" ")
-    print("")
+    print(' ')
 
     acertou = False
     enforcado = False
@@ -36,15 +35,14 @@ def jogar():
     erros = 0
 
     while not acertou and not enforcado:
-
-        index = 0
-
+        print(" ")
         chute = input("Digite uma Letra: ")
-        print("")
+        print(" ")
         chute = chute.strip()
 
         acertou_letra = 0
 
+        index = 0
         for letra in palavra_secreta:
             if (chute.lower() == letra.lower()):
                 acertou_letra = 1
@@ -53,7 +51,7 @@ def jogar():
 
         for letra in letras_acertadas:
             print(letra, end=" ")
-        print("   ")
+        print(" ")
 
         if not acertou_letra:
             erros += 1
@@ -61,6 +59,7 @@ def jogar():
             if erros == erros_maximos:
                 enforcado = True
             else:
+                print(' ')
                 desenha_boneco(1,0,0,0)
                 if erros > 1:
                     desenha_boneco(0,0,1,0)
@@ -73,18 +72,20 @@ def jogar():
         if letras_acertadas == palavra_secreta:
             acertou = True
 
-
-
+    print(" ")
     print("Fim do jogo")
 
     if enforcado:
         print("Você perdeu :/")
+        print("")
         desenha_boneco(2, 1, 2, 1)
+        print("")
         print(f"A palavra era {palavra_secreta_str}")
     else:
         print("Parabéns! Você Ganhou! :)")
+        print("")
         desenha_boneco(3, 0, 1, 1)
-
+        print("")
 
 def desenha_boneco(cabeca, corte, tronco, perna):
 
@@ -116,7 +117,6 @@ def desenha_boneco(cabeca, corte, tronco, perna):
 
     if perna == 1:
         print(duas_pernas)
-
 
 
 if (__name__ == "__main__"):
