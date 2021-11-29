@@ -3,6 +3,8 @@ import adivinhacao
 
 def escolhe_jogo():
     print("------------------------------------------")
+    print("              Bem vindx !                 ")
+    print("------------------------------------------")
     print("     Escolha o jogo que deseja jogar      ")
     print("------------------------------------------")
     print("         Jogo da Forca               - 1  ")
