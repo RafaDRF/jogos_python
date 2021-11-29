@@ -1,27 +1,116 @@
+import getpass
+
+
 def jogar():
-    ## Jogo de Adivinhacao
+    ## Jogo de Forca
+
     print("------------------------------------------")
-    print("             Jogo de Forca                ")
-    print("------------------------------------------")
-    print("              Bem vindx !                 ")
-    print("------------------------------------------")
-    print("    Níveis:                               ")
-    print("           Fácil   - 1                    ")
-    print("           Médio   - 2                    ")
-    print("           Dificil - 3                    ")
+    print("              Jogo da Forca               ")
     print("------------------------------------------")
 
-    while (1):
-        dificuldade = input("Digite o número corespendente ao nível: ")
-        dificuldade = int(dificuldade)
-        if (dificuldade <= 3 and dificuldade >= 1):
-            break
+    ##palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
 
-    pontos = 1500
-    numero_secreto = random.randrange(1, 101)
+    palavra_secreta_str = input("Digite sua palavra secreta: ")
 
-    numero_do_palpite = 1
-    numero_maximo_palpites = 20 - 5 * dificuldade
+    palavra_secreta = list(palavra_secreta_str)
+    letras_acertadas = []
+
+    for letra in palavra_secreta:
+        letras_acertadas.append("_")
+
+    print(" ")
+    for letra in letras_acertadas:
+        print(letra, end=" ")
+    print("")
+
+    acertou = False
+    enforcado = False
+
+    erros_maximos = 5
+    erros = 0
+
+    while not acertou and not enforcado:
+
+        index = 0
+
+        chute = input("Digite uma Letra: ")
+        print("")
+        chute = chute.strip()
+
+        acertou_letra = 0
+
+        for letra in palavra_secreta:
+            if (chute.lower() == letra.lower()):
+                acertou_letra = 1
+                letras_acertadas[index] = letra.lower()
+            index += 1
+
+        for letra in letras_acertadas:
+            print(letra, end=" ")
+        print("   ")
+
+        if not acertou_letra:
+            erros += 1
+
+            if erros == erros_maximos:
+                enforcado = True
+            else:
+                desenha_boneco(1,0,0,0)
+                if erros > 1:
+                    desenha_boneco(0,0,1,0)
+                if erros > 2:
+                    desenha_boneco(0, 0, 2, 0)
+                if erros > 3:
+                    desenha_boneco(0, 0, 0, 1)
+
+
+        if letras_acertadas == palavra_secreta:
+            acertou = True
+
+
+
+    print("Fim do jogo")
+
+    if enforcado:
+        print("Você perdeu :/")
+        desenha_boneco(2, 1, 2, 1)
+        print(f"A palavra era {palavra_secreta_str}")
+    else:
+        print("Parabéns! Você Ganhou! :)")
+        desenha_boneco(3, 0, 1, 1)
+
+
+def desenha_boneco(cabeca, corte, tronco, perna):
+
+    cara_neutra = "      '-'       "
+    cara_morta = "      X-X       "
+    cara_feliz = "    \ ^-^ /    "
+    corte_pescoco = "   --------     "
+    tronco_so = "       │        "
+    tronco_braco = "     / │ \      "
+    duas_pernas = "      / └       "
+
+    if cabeca == 1:
+        print(cara_neutra)
+
+    elif cabeca == 2:
+        print(cara_morta)
+
+    elif cabeca == 3:
+        print(cara_feliz)
+
+    if corte == 1:
+        print(corte_pescoco)
+
+    if tronco == 1:
+        print(tronco_so)
+
+    elif tronco == 2:
+        print(tronco_braco)
+
+    if perna == 1:
+        print(duas_pernas)
+
 
 
 if (__name__ == "__main__"):
