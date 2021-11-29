@@ -15,8 +15,14 @@ def jogar():
     palavra_secreta = list(palavra_secreta_str)
     letras_acertadas = []
 
+    index = 0
     for letra in palavra_secreta:
-        letras_acertadas.append("_")
+        if letra == " ":
+            palavra_secreta[index] = "-"
+            letras_acertadas.append("-")
+        else:
+            letras_acertadas.append("_")
+        index += 1
 
     print(" ")
     for letra in letras_acertadas:
