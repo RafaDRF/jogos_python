@@ -1,32 +1,16 @@
 import getpass
 
 def jogar():
-    ## Jogo de Forca
 
-    print("------------------------------------------")
-    print("              Jogo da Forca               ")
-    print("------------------------------------------")
-    print(" ")
-    palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
+    imprime_msg_inicial()
 
-    ##palavra_secreta_str = input("Digite sua palavra secreta: ")
+    ## palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
+    palavra_secreta_str = input('Digite sua palavra secreta: ')
+    palavra_secreta = carrega_palavra_secreta(palavra_secreta_str)
 
-    palavra_secreta = list(palavra_secreta_str)
-    letras_acertadas = []
+    letras_acertadas = incializa_letra_acertadas(palavra_secreta)
 
-    index = 0
-    for letra in palavra_secreta:
-        if letra == " ":
-            palavra_secreta[index] = "-"
-            letras_acertadas.append("-")
-        else:
-            letras_acertadas.append("_")
-        index += 1
-
-    print(" ")
-    for letra in letras_acertadas:
-        print(letra, end=" ")
-    print(' ')
+    imprime_letras_acertadas(letras_acertadas)
 
     acertou = False
     enforcado = False
@@ -49,9 +33,7 @@ def jogar():
                 letras_acertadas[index] = letra.lower()
             index += 1
 
-        for letra in letras_acertadas:
-            print(letra, end=" ")
-        print(" ")
+        imprime_letras_acertadas(letras_acertadas)
 
         if not acertou_letra:
             erros += 1
@@ -86,6 +68,39 @@ def jogar():
         print("")
         desenha_boneco(3, 0, 1, 1)
         print("")
+
+def imprime_msg_inicial():
+    print("------------------------------------------")
+    print("              Jogo da Forca               ")
+    print("------------------------------------------")
+    print(" ")
+
+
+def carrega_palavra_secreta(palavra_secreta_str):
+    palavra_secreta = list(palavra_secreta_str.lower())
+
+    index = 0
+    for letra in palavra_secreta:
+        if letra == " ":
+            palavra_secreta[index] = "-"
+    index += 1
+    return palavra_secreta
+
+
+def incializa_letra_acertadas(palavra_secreta):
+    letras_acertadas = []
+    for letra in palavra_secreta:
+        if letra == " ":
+            letras_acertadas.append("-")
+        else:
+            letras_acertadas.append("_")
+    return letras_acertadas
+
+def imprime_letras_acertadas(letras_acertadas):
+    print(" ")
+    for letra in letras_acertadas:
+        print(letra, end=" ")
+    print(' ')
 
 def desenha_boneco(cabeca, corte, tronco, perna):
 
