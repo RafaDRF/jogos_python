@@ -4,8 +4,8 @@ def jogar():
 
     imprime_msg_inicial()
 
-    ## palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
-    palavra_secreta_str = input('Digite sua palavra secreta: ')
+    palavra_secreta_str = getpass.getpass(prompt='Digite sua palavra secreta: ')
+
     palavra_secreta = carrega_palavra_secreta(palavra_secreta_str)
 
     letras_acertadas = incializa_letra_acertadas(palavra_secreta)
@@ -15,7 +15,7 @@ def jogar():
     acertou = False
     enforcado = False
 
-    erros_maximos = 5
+    erros_maximos = 7
     erros = 0
 
     while not acertou and not enforcado:
@@ -39,14 +39,7 @@ def jogar():
             if erros == erros_maximos:
                 enforcado = True
             else:
-                print(' ')
-                desenha_boneco(1,0,0,0)
-                if erros > 1:
-                    desenha_boneco(0,0,1,0)
-                if erros > 2:
-                    desenha_boneco(0, 0, 2, 0)
-                if erros > 3:
-                    desenha_boneco(0, 0, 0, 1)
+                desenha_forca(erros)
 
 
         if letras_acertadas == palavra_secreta:
@@ -127,6 +120,56 @@ def desenha_boneco(cabeca, corte, tronco, perna):
 
     if perna == 1:
         print(duas_pernas)
+
+def desenha_forca(erros):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if(erros == 1):
+        print(" |      '_'   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 2):
+        print(" |      '_'   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 3):
+        print(" |      '_'   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 4):
+        print(" |      '_'   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 5):
+        print(" |      '_'   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if(erros == 6):
+        print(" |      '_'   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if (erros == 7):
+        print(" |      '_'   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
 
 def imprime_msg_final(enforcado, palavra_secreta_str):
     print(" ")
