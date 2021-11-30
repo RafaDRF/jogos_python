@@ -3,11 +3,8 @@ import random
 def jogar():
     ## Jogo de Adivinhacao
 
-
     print("------------------------------------------")
     print("          Jogo de Adivinhação             ")
-    print("------------------------------------------")
-    print("              Bem vindx !                 ")
     print("------------------------------------------")
     print("    Níveis:                               ")
     print("           Fácil   - 1                    ")
