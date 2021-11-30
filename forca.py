@@ -1,8 +1,5 @@
 import getpass
 
-
-
-
 def jogar():
 
     imprime_msg_inicial()
