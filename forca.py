@@ -52,20 +52,10 @@ def jogar():
         if letras_acertadas == palavra_secreta:
             acertou = True
 
-    print(" ")
-    print("Fim do jogo")
 
-    if enforcado:
-        print("Você perdeu :/")
-        print("")
-        desenha_boneco(2, 1, 2, 1)
-        print("")
-        print(f"A palavra era {palavra_secreta_str}")
-    else:
-        print("Parabéns! Você Ganhou! :)")
-        print("")
-        desenha_boneco(3, 0, 1, 1)
-        print("")
+
+    imprime_msg_final(enforcado, palavra_secreta_str)
+
 
 def imprime_msg_inicial():
     print("------------------------------------------")
@@ -138,6 +128,20 @@ def desenha_boneco(cabeca, corte, tronco, perna):
     if perna == 1:
         print(duas_pernas)
 
+def imprime_msg_final(enforcado, palavra_secreta_str):
+    print(" ")
+    print("Fim do jogo")
+    if enforcado:
+        print("Você perdeu :/")
+        print("")
+        desenha_boneco(2, 1, 2, 1)
+        print("")
+        print(f"A palavra era {palavra_secreta_str}")
+    else:
+        print("Parabéns! Você Ganhou! :)")
+        print("")
+        desenha_boneco(3, 0, 1, 1)
+        print("")
 
 if (__name__ == "__main__"):
     jogar()
