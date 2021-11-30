@@ -1,5 +1,8 @@
 import getpass
 
+
+
+
 def jogar():
 
     imprime_msg_inicial()
@@ -19,10 +22,8 @@ def jogar():
     erros = 0
 
     while not acertou and not enforcado:
-        print(" ")
-        chute = input("Digite uma Letra: ")
-        print(" ")
-        chute = chute.strip()
+       
+        chute = pede_chute()
 
         acertou_letra = 0
 
@@ -101,6 +102,13 @@ def imprime_letras_acertadas(letras_acertadas):
     for letra in letras_acertadas:
         print(letra, end=" ")
     print(' ')
+
+def pede_chute():
+    print(" ")
+    chute = input("Digite uma Letra: ")
+    print(" ")
+    chute = chute.strip()
+    return chute
 
 def desenha_boneco(cabeca, corte, tronco, perna):
 
